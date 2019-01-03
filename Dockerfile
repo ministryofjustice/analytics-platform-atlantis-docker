@@ -1,7 +1,7 @@
 FROM runatlantis/atlantis:v0.4.13
 
 RUN apk update && \
-    apk add --no-cache musl-dev go govendor
+    apk add --no-cache musl-dev go govendor ruby ruby-dev ruby-rdoc make
 
 ENV GOPATH=$HOME/go
 ENV PATH=$PATH:$GOPATH/bin
@@ -12,3 +12,5 @@ RUN mkdir $HOME/go && \
     cd $GOPATH/src/github.com/opencredo/terrahelp && \
     govendor sync && \
     go install
+
+RUN gem install terraform_landscape
